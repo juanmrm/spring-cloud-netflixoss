@@ -1,0 +1,15 @@
+package com.demo.eurekaserver;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+@SpringBootApplication
+@EnableEurekaServer
+public class EurekaApplicationServer {
+
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(EurekaApplicationServer.class, args);
+    }
+
+}
