@@ -8,6 +8,9 @@ info:
 # Spring Boot Actuator Management Path
 management:
   context-path: /admin
+  # Disable security on actuator endpoint
+  security:
+    enabled: false
 
 # Spring properties
 spring:
@@ -22,11 +25,11 @@ spring:
 #  profiles:
 #    active: dev
 
-#logging:
-#  level:
-#    com.netflix.discovery: 'OFF'
-#    org.springframework.cloud: 'DEBUG'
-#
+logging:
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'DEBUG'
+
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10

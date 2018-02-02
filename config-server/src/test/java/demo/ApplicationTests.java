@@ -16,6 +16,10 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * This test will throw some exceptions trying to connect to Eureka Server if is not up (because it cannot register), but
+ * test proceed ignoring this problems.
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ConfigServerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ApplicationTests {
@@ -29,7 +33,7 @@ public class ApplicationTests {
     @Test
     public void configurationAvailable() {
         @SuppressWarnings("rawtypes")
-        ResponseEntity<Map> entity = testRestTemplate.getForEntity("http://localhost:" + port + "/springcloudconfig-client.properties", Map.class);
+        ResponseEntity<String> entity = testRestTemplate.getForEntity("http://localhost:" + port + "/springcloudconfig-client.properties", String.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
     }
 
