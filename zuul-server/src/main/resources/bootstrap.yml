@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: zuulserver
+  #Indicates Cloud Config Server
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
+
+# Register in Eureka Server
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}

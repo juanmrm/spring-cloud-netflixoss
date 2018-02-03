@@ -1,0 +1,42 @@
+server:
+ port: 8080
+
+# Component Info
+info:
+ component: Spring Cloud Zuul Server
+
+# Define Routes
+zuul:
+  routes:
+    stores: /stores/**
+    customers: /customers/**
+    zuulserver: /self/**
+
+# Spring Boot Actuator
+management:
+  # Management Path
+  context-path: /admin
+  # Disable security on actuator endpoint
+  security:
+    enabled: false
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false # sensitive endpoints will require a username/password when they are accessed over HTTP (or simply disabled if web security is not enabled)
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: DEBUG
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
+
+
