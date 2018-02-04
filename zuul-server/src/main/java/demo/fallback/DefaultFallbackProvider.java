@@ -27,6 +27,7 @@ public class DefaultFallbackProvider implements FallbackProvider {
 
     @Override
     public ClientHttpResponse fallbackResponse(final Throwable cause) {
+        cause.printStackTrace();
         if (cause instanceof HystrixTimeoutException) {
             return response(HttpStatus.GATEWAY_TIMEOUT);
         } else {
@@ -62,7 +63,7 @@ public class DefaultFallbackProvider implements FallbackProvider {
 
             @Override
             public InputStream getBody() throws IOException {
-                return new ByteArrayInputStream("fallback".getBytes());
+                return new ByteArrayInputStream("my fallback".getBytes());
             }
 
             @Override

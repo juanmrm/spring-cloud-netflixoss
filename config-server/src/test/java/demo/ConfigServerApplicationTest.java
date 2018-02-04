@@ -3,7 +3,6 @@ package demo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
@@ -22,18 +21,15 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ConfigServerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ApplicationTests {
-
-    @LocalServerPort // Same as @Value("${local.server.port}")
-    private int port = 0;
+public class ConfigServerApplicationTest {
 
     @Autowired
-    TestRestTemplate testRestTemplate;
+    private TestRestTemplate testRestTemplate;
 
     @Test
     public void configurationAvailable() {
         @SuppressWarnings("rawtypes")
-        ResponseEntity<String> entity = testRestTemplate.getForEntity("http://localhost:" + port + "/springcloudconfig-client.properties", String.class);
+        ResponseEntity<String> entity = testRestTemplate.getForEntity("/springcloudconfig-client.properties", String.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
     }
 
@@ -41,7 +37,7 @@ public class ApplicationTests {
     public void envPostAvailable() {
         MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
         @SuppressWarnings("rawtypes")
-        ResponseEntity<Map> entity = testRestTemplate.postForEntity("http://localhost:" + port + "/admin/env", form, Map.class);
+        ResponseEntity<Map> entity = testRestTemplate.postForEntity("/admin/env", form, Map.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
     }
 

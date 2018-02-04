@@ -8,13 +8,17 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+#    healthcheck:
+#      enabled: true
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#  server:
+#    waitTimeInMsWhenSyncEmpty: 0
 
 logging:
   level:
-    com.netflix.discovery: 'OFF'
-    org.springframework.cloud: 'DEBUG'
+    com.netflix.discovery: DEBUG
+    org.springframework.cloud: DEBUG
 
 # Disable security on actuator endpoint
 management:

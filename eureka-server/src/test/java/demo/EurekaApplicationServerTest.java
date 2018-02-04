@@ -1,4 +1,5 @@
-import demo.EurekaApplicationServer;
+package demo;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,12 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = EurekaApplicationServer.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT,
+@SpringBootTest(classes = EurekaApplicationServer.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
     properties = { "management.security.enabled=false" }) // management.security.enabled -> Disable security
-public class ApplicationTests {
+public class EurekaApplicationServerTest {
 
     @Autowired
-    TestRestTemplate testRestTemplate;
+    private TestRestTemplate testRestTemplate;
 
     @Test
     public void catalogLoads() {

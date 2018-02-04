@@ -13,7 +13,8 @@ public class TimeoutController {
      */
     @RequestMapping("/timeout")
     public String timeout() throws InterruptedException {
-        Thread.sleep(120000);
+        Thread.sleep(30000);
+        System.out.println("Executing timeout in TimeoutController");
         return "timeout";
     }
 }

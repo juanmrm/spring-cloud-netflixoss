@@ -8,9 +8,25 @@ info:
 # Define Routes
 zuul:
   routes:
-    stores: /stores/**
-    customers: /customers/**
     zuulserver: /self/**
+#    stores: /stores/**
+#    customers: /customers/**
+#  host:
+#    socket-timeout-millis: 30000
+#    connect-timeout-millis: 30000
+#  ribbon:
+#    ConnectTimeout: 30000
+#    ReadTimeout: 30000
+#  hystrix:
+#    command:
+#      default:
+#        execution:
+#          timeout:
+#            enabled: false
+#          isolation:
+#            strategy: THREAD
+#            thread:
+#              timeoutInMilliseconds: 60000
 
 # Spring Boot Actuator
 management:
@@ -30,13 +46,12 @@ endpoints:
 
 logging:
   level:
-    ROOT: INFO
-    org.springframework.web: DEBUG
+    demo: DEBUG
+    com.netflix.discovery: INFO
+    org.springframework.cloud: INFO
 
 eureka:
   instance:
-    leaseRenewalIntervalInSeconds: 10
+    leaseRenewalIntervalInSeconds: 30
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
-
-
