@@ -33,7 +33,5 @@ eureka:
     leaseRenewalIntervalInSeconds: 10
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+
 

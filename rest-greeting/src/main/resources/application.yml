@@ -1,31 +1,10 @@
+# Choose a ramdom port
 server:
- port: 8080
+ port: 0
 
 # Component Info
 info:
- component: Spring Cloud Zuul Server
-
-# Define Routes
-zuul:
-  routes:
-    zuulserver: /self/**
-#    stores: /stores/**
-#    customers: /customers/**
-
-ribbon:
-  ConnectTimeout: 3000
-  ReadTimeout: 10000
-
-hystrix:
-  command:
-    default:
-      execution:
-        timeout:
-          enabled: true
-        isolation:
-          strategy: THREAD
-          thread:
-            timeoutInMilliseconds: 8000
+ component: Spring Cloud Rest Greeting Microservice
 
 # Spring Boot Actuator
 management:
@@ -51,5 +30,6 @@ logging:
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 10
-    statusPageUrlPath: /info
-    healthCheckUrlPath: /health
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+#    preferIpAddress: true

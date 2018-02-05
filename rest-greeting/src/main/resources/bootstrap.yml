@@ -1,6 +1,10 @@
 spring:
   application:
-    name: configserver
+    name: rest-greeting
+  #Indicates Cloud Config Server
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER_URL:http://localhost:8888}
 
 # Register in Eureka Server
 eureka:

@@ -3,10 +3,12 @@ package demo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -20,16 +22,20 @@ import static org.junit.Assert.assertEquals;
  * test proceed ignoring this problems.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConfigServerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = {"eureka.client.enabled=false"} )
+@SpringBootTest(classes = ConfigServerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestPropertySource(locations = {"classpath:application-integrationtest.properties"})
 public class ConfigServerApplicationTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
 
+    @Value("${management.context-path}")
+    private String managementPath;
+
     @Test
     public void configurationAvailable() {
         @SuppressWarnings("rawtypes")
-        ResponseEntity<String> entity = testRestTemplate.getForEntity("/eureka-default.yml", String.class);
+        ResponseEntity<String> entity = testRestTemplate.getForEntity("/eureka/default", String.class); // Querying the Configuration -> /{application}/{profile}[/{label}] or /{application}-{profile}.yml
         assertEquals(HttpStatus.OK, entity.getStatusCode());
     }
 
@@ -37,7 +43,7 @@ public class ConfigServerApplicationTest {
     public void envPostAvailable() {
         MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
         @SuppressWarnings("rawtypes")
-        ResponseEntity<Map> entity = testRestTemplate.postForEntity("/admin/env", form, Map.class);
+        ResponseEntity<Map> entity = testRestTemplate.postForEntity(this.managementPath + "/env", form, Map.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
     }
 

@@ -2,6 +2,7 @@ package demo.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
@@ -9,15 +10,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class TimeoutController {
 
     /**
-     * For testing purposes. Hystrix fallbacks for routes in Zuul. If you hit http://localhost:8765/self/timeout you can see the fallback functionality in action.
+     * For testing Hystrix fallbacks for routes in Zuul.
+     * Hit http://localhost:8765/self/timeout?force=true you can see the fallback functionality in action.
+     *
+     * TODO: Currently there are problems with timeout: https://github.com/spring-cloud/spring-cloud-netflix/issues/2379 / https://github.com/spring-cloud/spring-cloud-netflix/pull/2633
+     *
      * @return
      * @throws InterruptedException
      */
     @RequestMapping("/timeout")
-    public String timeout() throws InterruptedException {
-        Long timeout = ((int) (Math.ceil(Math.random() * 10))) % 2 == 0 ? 2000L : 8500L;
-        log.info("Calculated timeout for this time is: {}ms.", timeout);
-        Thread.sleep(timeout);
+    public String timeout(@RequestParam(value="force", defaultValue="false") Boolean force) throws InterruptedException {
+        Thread.sleep(force ? 8500L : 1000L);
         return "timeout";
     }
 }

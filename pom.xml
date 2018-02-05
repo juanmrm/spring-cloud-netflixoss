@@ -15,6 +15,7 @@
 		<module>config-server</module>
 		<module>eureka-server</module>
 		<module>zuul-server</module>
+		<module>rest-greeting</module>
 	</modules>
 
 	<parent>
