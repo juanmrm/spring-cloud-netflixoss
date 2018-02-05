@@ -1,5 +1,5 @@
 server:
-  port: 8761
+  port: 8760
 
 # No debe publicarse en otro servidor eureka, por eso registerWithEureka y fetchRegistry es false
 eureka:
