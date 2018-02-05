@@ -1,0 +1,9 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8760/eureka}
+
+# Disable security on actuator endpoint
+#management:
+#  security:
+#    enabled: false
