@@ -1,26 +1,26 @@
-server:
-  port: 8761
-
-# No debe publicarse en otro servidor eureka, por eso registerWithEureka y fetchRegistry es false
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
-#    healthcheck:
-#      enabled: true
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-#  server:
-#    waitTimeInMsWhenSyncEmpty: 0
-
-logging:
-  level:
-    com.netflix.discovery: DEBUG
-    org.springframework.cloud: DEBUG
-
-# Disable security on actuator endpoint
-management:
-  security:
-    enabled: false
+#server:
+#  port: 8761
+#
+## No debe publicarse en otro servidor eureka, por eso registerWithEureka y fetchRegistry es false
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    registerWithEureka: false
+#    fetchRegistry: false
+##    healthcheck:
+##      enabled: true
+#    serviceUrl:
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+##  server:
+##    waitTimeInMsWhenSyncEmpty: 0
+#
+#logging:
+#  level:
+#    com.netflix.discovery: DEBUG
+#    org.springframework.cloud: DEBUG
+#
+## Disable security on actuator endpoint
+#management:
+#  security:
+#    enabled: false
