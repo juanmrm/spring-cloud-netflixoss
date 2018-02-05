@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ConfigServerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(locations = {"classpath:application-integrationtest.properties"})
-public class ConfigServerApplicationTest {
+public class ApplicationIT {
 
     @Autowired
     private TestRestTemplate testRestTemplate;

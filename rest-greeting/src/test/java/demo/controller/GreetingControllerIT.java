@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(GreetingController.class)
 @TestPropertySource(locations = "classpath:application-integrationtest.properties")
-public class GreetingControllerTest {
+public class GreetingControllerIT {
 
     @Autowired
     private MockMvc mvc;
