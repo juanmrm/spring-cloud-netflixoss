@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
  * test proceed ignoring this problems.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = ConfigServerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = ConfigServerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = {"eureka.client.enabled=false"} )
 public class ConfigServerApplicationTest {
 
     @Autowired
@@ -29,7 +29,7 @@ public class ConfigServerApplicationTest {
     @Test
     public void configurationAvailable() {
         @SuppressWarnings("rawtypes")
-        ResponseEntity<String> entity = testRestTemplate.getForEntity("/springcloudconfig-client.properties", String.class);
+        ResponseEntity<String> entity = testRestTemplate.getForEntity("/eureka-default.yml", String.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
     }
 

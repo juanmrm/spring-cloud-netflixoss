@@ -21,6 +21,7 @@ spring:
     git:
       uri: https://github.com/juanmrm/spring-cloud-netflixoss
       searchPaths: config-repo
+      basedir: target/config
 
 logging:
   level:
@@ -32,4 +33,7 @@ eureka:
     leaseRenewalIntervalInSeconds: 10
     statusPageUrlPath: /info
     healthCheckUrlPath: /health
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
 
