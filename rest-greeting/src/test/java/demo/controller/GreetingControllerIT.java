@@ -24,7 +24,7 @@ public class GreetingControllerIT {
 
     @Test
     public void whenGetGreeting_thenReturnString() throws Exception {
-        mvc.perform(get("/api/greeting")
+        mvc.perform(get("/greeting")
                 .contentType(MediaType.TEXT_PLAIN))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello from Rest Greeting Application!"));

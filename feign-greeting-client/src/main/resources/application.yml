@@ -1,0 +1,35 @@
+# Choose a ramdom port
+server:
+ port: 0
+
+# Component Info
+info:
+ component: Spring Cloud Feign Greeting Client Microservice
+
+# Spring Boot Actuator
+management:
+  # Management Path
+  context-path: /admin
+  # Disable security on actuator endpoint
+  security:
+    enabled: false
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false # sensitive endpoints will require a username/password when they are accessed over HTTP (or simply disabled if web security is not enabled)
+
+logging:
+  level:
+    com.netflix.discovery: DEBUG
+    org.springframework.cloud: DEBUG
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+#    preferIpAddress: true
