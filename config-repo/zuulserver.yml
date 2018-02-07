@@ -1,0 +1,38 @@
+# Define Routes
+# Need to set stripPrefix=false because we set the context-path of your services.
+zuul:
+  ignoredServices: '*'
+  routes:
+    zuulserver:
+      path: /self/**
+      serviceId: zuulserver
+      stripPrefix: false
+    feign-greeting-client:
+      path: /get-greeting/**
+      serviceId: feign-greeting-client
+      stripPrefix: false
+    rest-greeting:
+      path: /greeting/**
+      serviceId: rest-greeting
+      stripPrefix: false
+  include:
+    debug-header: true
+#    stores: /stores/**
+#    customers: /customers/**
+
+ribbon:
+  ConnectTimeout: 3000
+  ReadTimeout: 10000
+  eureka:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 8000
