@@ -1,3 +1,10 @@
+server:
+ port: 8080
+
+# Component Info
+info:
+ component: Spring Cloud Zuul Server
+
 # Define Routes
 # Need to set stripPrefix=false because we set the context-path of your services.
 zuul:
@@ -36,3 +43,31 @@ hystrix:
           strategy: THREAD
           thread:
             timeoutInMilliseconds: 8000
+
+# Spring Boot Actuator
+management:
+  # Management Path
+  context-path: /admin
+  # Disable security on actuator endpoint
+  security:
+    enabled: false
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+  health:
+    sensitive: false # sensitive endpoints will require a username/password when they are accessed over HTTP (or simply disabled if web security is not enabled)
+
+logging:
+  level:
+    com.demo: DEBUG
+    com.netflix.discovery: INFO
+    org.springframework.cloud: INFO
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    statusPageUrlPath: /info
+    healthCheckUrlPath: /health
