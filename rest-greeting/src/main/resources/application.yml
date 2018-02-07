@@ -32,4 +32,3 @@ eureka:
     leaseRenewalIntervalInSeconds: 10
     statusPageUrlPath: ${management.context-path}/info
     healthCheckUrlPath: ${management.context-path}/health
-#    preferIpAddress: true
