@@ -11,7 +11,7 @@
     </parent>
     <artifactId>rest-greeting</artifactId>
 
-    <name>Rest Greeting</name>
+    <name>rest-greeting</name>
     <description>Rest Greeting Microservice</description>
 
     <dependencies>

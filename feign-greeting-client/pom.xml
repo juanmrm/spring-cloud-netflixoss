@@ -11,7 +11,7 @@
     </parent>
     <artifactId>feign-greeting-client</artifactId>
 
-    <name>Feign Greeting Client</name>
+    <name>feign-greeting-client</name>
     <description>A Feign Greeting Client using Rest Greeting Microservice</description>
 
     <dependencies>
